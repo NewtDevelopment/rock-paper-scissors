@@ -3,7 +3,7 @@ console.log("Welcome to the thunder dome!");
 
 
 //Returns the computers choice of rock paper or scissors
-function computerPlay(){
+function getComputerPlay(){
     let rand = Math.floor(Math.random()*3);
     if (rand===0){
         return "rock"
@@ -17,7 +17,7 @@ function computerPlay(){
 }
 
 //return the decision as to who won, lost or tied
-function roundDecision(playerSelection, computerSelection){
+function getRoundDecision(playerSelection, computerSelection){
     if (playerSelection === 'rock'){
         if(computerSelection === 'rock'){
             return("You tie.")
@@ -54,11 +54,11 @@ function getUserInput(){
 }
 
 //loops through the game 5 times and displays the result at the end
-function game(){
+function playGame(){
     let computerScore = 0;
     let playerScore = 0;
     for(let i = 0; i<5; i++){
-        let outcome= roundDecision(getUserInput(), computerPlay())
+        let outcome= getRoundDecision(getUserInput(), getComputerPlay())
         if(outcome === "You win!"){
             ++playerScore;
             console.log(outcome);
@@ -87,4 +87,4 @@ function game(){
 
 
 //entry into the game
-game();
+playGame();
