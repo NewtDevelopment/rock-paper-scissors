@@ -1,3 +1,4 @@
+//friendly greeting
 console.log("Welcome to the thunder dome!");
 
 
@@ -15,6 +16,7 @@ function computerPlay(){
 
 }
 
+//return the decision as to who won, lost or tied
 function roundDecision(playerSelection, computerSelection){
     if (playerSelection === 'rock'){
         if(computerSelection === 'rock'){
@@ -45,10 +47,13 @@ function roundDecision(playerSelection, computerSelection){
     }
 }
 
+//get the user input
 function getUserInput(){
     let playerSelection = prompt("Make your choice wisely: ");
     return playerSelection.toLowerCase();
 }
+
+//loops through the game 5 times and displays the result at the end
 function game(){
     let computerScore = 0;
     let playerScore = 0;
@@ -80,4 +85,6 @@ function game(){
     
 }
 
+
+//entry into the game
 game();
