@@ -1,5 +1,11 @@
 //friendly greeting
 console.log("Welcome to the thunder dome!");
+let player_score = document.querySelector('.playerScore')
+let computer_score = document.querySelector('.computerScore')
+
+//results
+let round_result = document.querySelector('.round-result')
+let final_result = document.querySelector('.final-result') 
 
 
 //Returns the computers choice of rock paper or scissors
@@ -16,31 +22,65 @@ function getComputerPlay(){
 
 }
 
+function playerWin(){
+    round_result.textContent="You win!";
+    let current_score = parseInt(player_score.textContent);
+    current_score++;
+    player_score.textContent = current_score;
+    if (current_score >=5){
+        final_result.textContent = "You won!! Nice work!"
+        round_result.textContent="";
+        player_score.textContent = 0;
+        computer_score.textContent = 0;
+    }
+}
+function playerLose(){
+    round_result.textContent="You lose.";
+    let current_score = parseInt(computer_score.textContent);
+    current_score++;
+    computer_score.textContent = current_score;
+    if (current_score >=5){
+        final_result.textContent = "The computer won. Try again!!"
+        round_result.textContent="";
+        player_score.textContent = 0;
+        computer_score.textContent = 0;
+    }
+}
+function playerTie(){
+    round_result.textContent="You tie.";
+}
+
+function resetGame(){
+    player_score.textContent = 0;
+    computer_score.textContent = 0;
+    round_result.textContent = "";
+}
+
 //return the decision as to who won, lost or tied
 function getRoundDecision(playerSelection, computerSelection){
     if (playerSelection === 'rock'){
         if(computerSelection === 'rock'){
-            return("You tie.")
+            playerTie()
         }else if(computerSelection==='paper'){
-            return("You lose.")
+            playerLose()
         }else if(computerSelection==='scissors'){
-            return("You win!")
+            playerWin();
         }
     }else if(playerSelection==='paper'){
         if(computerSelection === 'rock'){
-            return("You win!")
+            playerWin();
         }else if(computerSelection==='paper'){
-            return("You tie.")
+            playerTie()
         }else if(computerSelection==='scissors'){
-            return("You lose.")
+            playerLose()
         }
     }else if(playerSelection==='scissors'){
         if(computerSelection === 'rock'){
-            return("You lose.")
+            playerLose()
         }else if(computerSelection==='paper'){
-            return("You win!")
+            playerWin();
         }else if(computerSelection==='scissors'){
-            return("You tie.")
+            playerTie()
         }
     }else{
         return("Please input a valid selection!(rock, paper, or scissors)")
@@ -48,40 +88,38 @@ function getRoundDecision(playerSelection, computerSelection){
 }
 
 //get the user input
-function getUserInput(){
-    let playerSelection = prompt("Make your choice wisely: ");
-    return playerSelection.toLowerCase();
-}
+
 
 //loops through the game 5 times and displays the result at the end
 function playGame(){
+    //button variables
+    let btn_rock = document.querySelector('.btn-rock')
+    let btn_paper = document.querySelector('.btn-paper')
+    let btn_scissors = document.querySelector('.btn-scissors')
+
+    
+
+
+    btn_rock.addEventListener('click', () =>{
+        getRoundDecision('rock', getComputerPlay())
+    })
+    btn_paper.addEventListener('click', () =>{
+        getRoundDecision('paper', getComputerPlay())
+    })
+    btn_scissors.addEventListener('click', () =>{
+        getRoundDecision('scissors', getComputerPlay())
+    })
+    
+    
+
     let computerScore = 0;
     let playerScore = 0;
-    for(let i = 0; i<5; i++){
-        let outcome= getRoundDecision(getUserInput(), getComputerPlay())
-        if(outcome === "You win!"){
-            ++playerScore;
-            console.log(outcome);
-        }else if(outcome==="You lose."){
-            ++computerScore;
-            console.log(outcome);
-        }else if(outcome==="You tie."){
-            console.log(outcome);
-        }else if(outcome==="Please input a valid selection!(rock, paper, or scissors)"){
-            i--;
-            console.log(outcome);
-        }
-        console.log('The current score is:')
-        console.log(`Player: ${playerScore}  Computer: ${computerScore} `)
-    }
 
-    if(playerScore>computerScore){
-        console.log(`You won with a final score of -> Player: ${playerScore}  Computer: ${computerScore}`)
-    }else if(computerScore>playerScore){
-        console.log(`You lost with a final score of -> Player: ${playerScore}  Computer: ${computerScore}`)
-    }else{
-        console.log(`There was a tie with a final score of -> Player: ${playerScore}  Computer: ${computerScore}`)
-    }
+    
+    
+    
+
+    
     
 }
 

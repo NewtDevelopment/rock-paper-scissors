@@ -1,0 +1,22 @@
+.page{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+.scores{
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+}
+.player-score,
+.computer-score{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+
+}
